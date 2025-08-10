@@ -33,7 +33,7 @@ Assets
 SEO
 ---
 
-- Includes Schema.org `Corporation` structured data and Open Graph/Twitter metadata.
+- Includes Schema.org `Corporation` structured data (no personally identifying owner details) and Open Graph/Twitter metadata.
 
 DNS (Google Domains / Workspace)
 --------------------------------
