@@ -1,0 +1,7 @@
+/* Scoped tweaks specific to the Entertainment microsite */
+.ent-header { background: rgba(21, 20, 40, 0.7); }
+.ent-nav { padding: .6rem 0; }
+.ent-hero { background: radial-gradient(900px 520px at 85% -10%, #3a245e 0%, transparent 55%); }
+.hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1rem; }
+
+
