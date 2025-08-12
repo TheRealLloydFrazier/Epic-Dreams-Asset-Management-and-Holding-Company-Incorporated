@@ -1,0 +1,86 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Site (Home)",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost:8000/",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Start Dev Server"
+        },
+        {
+            "name": "Launch Site (Home) — Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8000/",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Start Dev Server"
+        },
+        {
+            "name": "Launch Site (Home) — Comet",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8000/",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Start Dev Server",
+            "runtimeExecutable": "${env:COMET_PATH}"
+        },
+        {
+            "name": "Launch AI Microsite",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost:8000/ai/",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Start Dev Server"
+        },
+        {
+            "name": "Launch AI Microsite — Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8000/ai/",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Start Dev Server"
+        },
+        {
+            "name": "Launch AI Microsite — Comet",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8000/ai/",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Start Dev Server",
+            "runtimeExecutable": "${env:COMET_PATH}"
+        },
+        {
+            "name": "Launch Competitive Analysis",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost:8000/ai-competitive-analysis.html",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Start Dev Server"
+        },
+        {
+            "name": "Attach to Edge (9222)",
+            "type": "msedge",
+            "request": "attach",
+            "port": 9222,
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Attach to Chrome (9222)",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Python Debugger: Python File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}"
+        }
+    ]
+}

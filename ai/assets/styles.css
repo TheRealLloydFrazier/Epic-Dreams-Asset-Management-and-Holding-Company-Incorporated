@@ -1,0 +1,11 @@
+/* Scoped tweaks specific to the AI microsite */
+.ai-header { background: rgba(21, 20, 40, 0.7); }
+.ai-nav { padding: .6rem 0; }
+.ai-hero { background: radial-gradient(900px 520px at 10% -10%, #2a2361 0%, transparent 55%); }
+.hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1rem; }
+
+/* Ensure links look good on dark hero */
+.ai-hero .button { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
+.ai-hero .button:hover { background: rgba(255,255,255,0.16); }
+
+
