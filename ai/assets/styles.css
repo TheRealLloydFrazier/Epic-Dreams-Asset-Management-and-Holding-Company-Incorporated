@@ -1,11 +1,241 @@
-/* Scoped tweaks specific to the AI microsite */
-.ai-header { background: rgba(21, 20, 40, 0.7); }
-.ai-nav { padding: .6rem 0; }
-.ai-hero { background: radial-gradient(900px 520px at 10% -10%, #2a2361 0%, transparent 55%); }
-.hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1rem; }
+/* AI Solutions Microsite - Brand-specific styles */
 
-/* Ensure links look good on dark hero */
-.ai-hero .button { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
-.ai-hero .button:hover { background: rgba(255,255,255,0.16); }
+/* Header with AI-focused cosmic theme */
+.ai-header { 
+  background: linear-gradient(90deg, 
+    rgba(11, 13, 68, 0.95), 
+    rgba(0, 206, 209, 0.1), 
+    rgba(11, 13, 68, 0.95));
+  border-bottom: 1px solid rgba(0, 206, 209, 0.3);
+}
 
+.ai-nav { 
+  padding: .8rem 0; 
+}
 
+/* AI Hero with tech-forward gradient */
+.ai-hero { 
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 206, 209, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+    radial-gradient(900px 520px at 10% -10%, rgba(26, 22, 84, 0.4) 0%, transparent 55%);
+  position: relative;
+}
+
+/* Animated circuit pattern for AI theme */
+.ai-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(90deg, transparent 48%, rgba(0, 206, 209, 0.05) 49%, rgba(0, 206, 209, 0.05) 51%, transparent 52%),
+    linear-gradient(0deg, transparent 48%, rgba(0, 206, 209, 0.05) 49%, rgba(0, 206, 209, 0.05) 51%, transparent 52%);
+  background-size: 40px 40px;
+  animation: pulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.hero-actions { 
+  display: flex; 
+  gap: 1rem; 
+  flex-wrap: wrap; 
+  margin-top: 1.5rem; 
+}
+
+/* AI-specific button styles */
+.ai-hero .button { 
+  background: linear-gradient(135deg, 
+    rgba(0, 206, 209, 0.1), 
+    rgba(212, 175, 55, 0.1)); 
+  border: 1px solid rgba(0, 206, 209, 0.3); 
+  color: var(--text);
+  backdrop-filter: blur(10px);
+}
+
+.ai-hero .button:hover { 
+  background: linear-gradient(135deg, 
+    rgba(0, 206, 209, 0.2), 
+    rgba(212, 175, 55, 0.2)); 
+  border-color: var(--accent-contrast);
+  box-shadow: 0 8px 25px rgba(0, 206, 209, 0.3);
+}
+
+.ai-hero .button-primary {
+  background: linear-gradient(135deg, var(--accent-contrast), var(--accent));
+  border-color: var(--accent-contrast);
+  color: var(--bg-dark);
+}
+
+.ai-hero .button-primary:hover {
+  background: linear-gradient(135deg, var(--accent), var(--accent-contrast));
+  box-shadow: 0 10px 30px rgba(0, 206, 209, 0.4);
+}
+
+/* Feature cards with AI theme */
+.ai-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.ai-feature-card {
+  background: 
+    linear-gradient(135deg, rgba(0, 206, 209, 0.03), transparent),
+    rgba(26, 22, 84, 0.4);
+  border: 1px solid rgba(0, 206, 209, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-feature-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--accent-contrast), var(--accent), var(--accent-contrast));
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.ai-feature-card:hover::before {
+  opacity: 0.3;
+}
+
+.ai-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0, 206, 209, 0.3);
+}
+
+.ai-feature-card h3 {
+  color: var(--accent-contrast);
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+/* Pricing table with AI colors */
+.pricing-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.pricing-card {
+  background: linear-gradient(180deg, 
+    rgba(245, 245, 220, 0.02), 
+    rgba(0, 206, 209, 0.02));
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--accent-contrast), var(--accent));
+  opacity: 0.3;
+}
+
+.pricing-card.featured {
+  transform: scale(1.05);
+}
+
+.pricing-card.featured::before {
+  opacity: 0.6;
+}
+
+/* Tech stack badges */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tech-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background: rgba(0, 206, 209, 0.1);
+  border: 1px solid rgba(0, 206, 209, 0.3);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--accent-contrast);
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  background: rgba(0, 206, 209, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 206, 209, 0.3);
+}
+
+/* Implementation timeline */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent-contrast), var(--accent));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.5rem;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  background: var(--accent-contrast);
+  border: 2px solid var(--bg);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 206, 209, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ai-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .pricing-table {
+    grid-template-columns: 1fr;
+  }
+  
+  .pricing-card.featured {
+    transform: none;
+  }
+}

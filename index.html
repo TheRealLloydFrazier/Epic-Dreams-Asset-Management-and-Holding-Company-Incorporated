@@ -52,6 +52,102 @@
         ]
       }
     </script>
+    <style>
+      /* Additional styles for new sections */
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      
+      .value-card {
+        background: linear-gradient(135deg, rgba(245, 245, 220, 0.03), transparent);
+        border: 1px solid var(--border-strong);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+      
+      .value-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+        border-color: var(--accent);
+      }
+      
+      .value-card h4 {
+        color: var(--accent);
+        margin: 0 0 0.5rem;
+        font-size: 1.2rem;
+      }
+      
+      .portfolio-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+      
+      .metric-card {
+        text-align: center;
+        padding: 1.5rem;
+        background: rgba(26, 22, 84, 0.4);
+        border-radius: 12px;
+        border: 1px solid var(--border-strong);
+        transition: all 0.3s ease;
+      }
+      
+      .metric-card:hover {
+        transform: scale(1.05);
+        background: rgba(212, 175, 55, 0.1);
+      }
+      
+      .metric-value {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: none;
+      }
+      
+      .metric-label {
+        display: block;
+        margin-top: 0.5rem;
+        color: var(--text-alt);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .focus-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      
+      .focus-item {
+        padding: 1.5rem;
+        background: linear-gradient(135deg, rgba(0, 206, 209, 0.05), rgba(212, 175, 55, 0.05));
+        border-left: 3px solid var(--accent);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      
+      .focus-item:hover {
+        transform: translateX(5px);
+        background: linear-gradient(135deg, rgba(0, 206, 209, 0.1), rgba(212, 175, 55, 0.1));
+      }
+      
+      .focus-item h4 {
+        color: var(--accent-contrast);
+        margin: 0 0 0.5rem;
+      }
+    </style>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -165,6 +261,89 @@
             This site is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any
             securities. Nothing herein constitutes investment, legal, tax, or other professional advice.
           </p>
+        </div>
+      </section>
+
+      <section id="vision" class="section">
+        <div class="container">
+          <h2>Vision & Mission</h2>
+          <div class="grid-2">
+            <div>
+              <h3>Our Vision</h3>
+              <p>
+                To become a leading force in transformative technology and entertainment, creating lasting value through innovation,
+                strategic partnerships, and operational excellence. We envision a future where artificial intelligence enhances human
+                creativity and entertainment experiences that transcend traditional boundaries.
+              </p>
+            </div>
+            <div>
+              <h3>Our Mission</h3>
+              <p>
+                Epic Dreams Asset Management stewards capital and resources to build enduring companies that push the boundaries of
+                what's possible. Through our subsidiaries, we deliver cutting-edge AI solutions that drive measurable business outcomes
+                and create entertainment experiences that inspire, engage, and connect communities worldwide.
+              </p>
+            </div>
+          </div>
+          <div class="values-grid">
+            <div class="value-card">
+              <h4>Innovation</h4>
+              <p>Pioneering new frontiers in technology and creative expression</p>
+            </div>
+            <div class="value-card">
+              <h4>Excellence</h4>
+              <p>Commitment to the highest standards in everything we do</p>
+            </div>
+            <div class="value-card">
+              <h4>Integrity</h4>
+              <p>Building trust through transparency and ethical business practices</p>
+            </div>
+            <div class="value-card">
+              <h4>Partnership</h4>
+              <p>Creating value through collaborative relationships and shared success</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" class="section alt">
+        <div class="container">
+          <h2>Portfolio Performance</h2>
+          <div class="portfolio-metrics">
+            <div class="metric-card">
+              <span class="metric-value">2</span>
+              <span class="metric-label">Active Subsidiaries</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">4</span>
+              <span class="metric-label">Board Members</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">2024</span>
+              <span class="metric-label">Founded</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">∞</span>
+              <span class="metric-label">Growth Potential</span>
+            </div>
+          </div>
+          <div class="investment-focus">
+            <h3>Investment Focus Areas</h3>
+            <div class="focus-grid">
+              <div class="focus-item">
+                <h4>Artificial Intelligence</h4>
+                <p>Next-generation AI solutions for enterprise automation and optimization</p>
+              </div>
+              <div class="focus-item">
+                <h4>Entertainment & Media</h4>
+                <p>Innovative content creation and distribution platforms</p>
+              </div>
+              <div class="focus-item">
+                <h4>Future Technologies</h4>
+                <p>Emerging opportunities in quantum computing, blockchain, and Web3</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
