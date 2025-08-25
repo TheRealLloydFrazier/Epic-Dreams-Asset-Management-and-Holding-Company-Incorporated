@@ -371,6 +371,170 @@
   transform: translateY(0);
 }
 
+/* Record Label Section Styles */
+.record-label-intro {
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  color: var(--text-alt);
+}
+
+.artists-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin: 3rem 0;
+}
+
+.artist-profile {
+  background: 
+    linear-gradient(135deg, rgba(212, 175, 55, 0.03), transparent),
+    rgba(26, 22, 84, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.artist-profile::before {
+  content: '♪';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  font-size: 200px;
+  color: rgba(212, 175, 55, 0.05);
+  transform: rotate(-15deg);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: rotate(-15deg) translateY(0); }
+  50% { transform: rotate(-15deg) translateY(-20px); }
+}
+
+.artist-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.artist-name {
+  font-size: 2.2rem;
+  margin: 0 0 1rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.artist-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.artist-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.artist-bio p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-alt);
+}
+
+.streaming-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.streaming-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.streaming-button.spotify {
+  background: linear-gradient(135deg, #1DB954, #1ed760);
+  color: white;
+  border-color: #1DB954;
+}
+
+.streaming-button.spotify:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(29, 185, 84, 0.4);
+  background: linear-gradient(135deg, #1ed760, #1DB954);
+}
+
+.streaming-button::before {
+  content: '🎵';
+  font-size: 1.2rem;
+}
+
+.spotify-embed {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1px;
+}
+
+.spotify-embed iframe {
+  display: block;
+}
+
+.distribution-partner {
+  margin-top: 4rem;
+  padding: 2rem;
+  background: 
+    linear-gradient(135deg, rgba(0, 206, 209, 0.05), rgba(212, 175, 55, 0.05));
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.partner-info {
+  font-size: 1.1rem;
+  color: var(--text-alt);
+  margin: 0;
+}
+
+.distro-highlight {
+  color: var(--accent);
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Responsive adjustments for record label */
+@media (max-width: 968px) {
+  .artist-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .artist-bio {
+    text-align: center;
+  }
+  
+  .streaming-links {
+    justify-content: center;
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .project-grid {
