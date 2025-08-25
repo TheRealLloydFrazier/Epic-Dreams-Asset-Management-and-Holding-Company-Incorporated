@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Epic Dreams Records — Music Catalog</title>
+    <meta name="description" content="Epic Dreams Records presents Lloyd Frazier and Kelly Layton. Discover innovative music distributed worldwide through Distro Kids." />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="../assets/logo.png" as="image" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <link rel="stylesheet" href="assets/styles.css" />
+
+    <meta property="og:title" content="Epic Dreams Records — Music Catalog" />
+    <meta property="og:description" content="Featuring Lloyd Frazier and Kelly Layton. Innovative music distributed worldwide." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://epicdreamsassetmanagement.com/assets/og.png" />
+    <meta property="og:url" content="https://epicdreamsassetmanagement.com/entertainment/music.html" />
+    <link rel="canonical" href="https://epicdreamsassetmanagement.com/entertainment/music.html" />
+    
+    <style>
+      .music-hero {
+        background: 
+          radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 40%),
+          radial-gradient(circle at 80% 50%, rgba(255, 111, 97, 0.1) 0%, transparent 40%),
+          linear-gradient(135deg, var(--bg-dark), var(--cosmic-purple));
+        position: relative;
+        padding: 6rem 0 4rem;
+      }
+      
+      .music-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+      }
+      
+      .stat-card {
+        text-align: center;
+        padding: 1.5rem;
+        background: rgba(26, 22, 84, 0.6);
+        border: 1px solid var(--border-strong);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+      }
+      
+      .stat-card:hover {
+        transform: translateY(-4px);
+        background: rgba(212, 175, 55, 0.1);
+      }
+      
+      .stat-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+      }
+      
+      .stat-label {
+        display: block;
+        color: var(--text-alt);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .featured-releases {
+        margin: 3rem 0;
+      }
+      
+      .releases-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      
+      .release-card {
+        background: rgba(26, 22, 84, 0.4);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      
+      .release-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+      }
+      
+      .release-artwork {
+        width: 100%;
+        aspect-ratio: 1;
+        background: linear-gradient(135deg, var(--cosmic-purple), var(--accent));
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: rgba(245, 245, 220, 0.2);
+      }
+      
+      .release-info {
+        padding: 1.5rem;
+      }
+      
+      .release-title {
+        font-size: 1.2rem;
+        color: var(--accent);
+        margin: 0 0 0.5rem;
+      }
+      
+      .release-artist {
+        color: var(--text-alt);
+        font-size: 0.9rem;
+      }
+      
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        transition: all 0.3s ease;
+      }
+      
+      .back-link:hover {
+        transform: translateX(-5px);
+        color: var(--accent-strong);
+      }
+      
+      .back-link::before {
+        content: '←';
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header ent-header" role="banner">
+      <div class="container ent-nav">
+        <div class="brand">
+          <img src="../assets/logo.png" alt="Epic Dreams Records logo" onerror="this.style.display='none'" />
+          <span class="brand-text">Epic Dreams Records</span>
+        </div>
+        <nav class="site-nav" aria-label="Music Navigation">
+          <ul>
+            <li><a href="#lloyd-frazier">Lloyd Frazier</a></li>
+            <li><a href="#kelly-layton">Kelly Layton</a></li>
+            <li><a href="#featured">Featured</a></li>
+            <li><a href="#streaming">Streaming</a></li>
+            <li><a href="index.html">Back to Entertainment</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero music-hero" aria-label="Epic Dreams Records overview">
+        <div class="container">
+          <a href="index.html" class="back-link">Back to Epic Dreams Entertainment</a>
+          <div class="hero-content">
+            <h1>Epic Dreams Records</h1>
+            <p class="tagline">Home to innovative artists creating music that transcends boundaries.</p>
+            <div class="music-stats">
+              <div class="stat-card">
+                <span class="stat-number">2</span>
+                <span class="stat-label">Artists</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">∞</span>
+                <span class="stat-label">Creativity</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">Global</span>
+                <span class="stat-label">Distribution</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Streaming</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="featured" class="section">
+        <div class="container">
+          <h2>Featured Releases</h2>
+          <div class="releases-grid">
+            <div class="release-card">
+              <div class="release-artwork">🎵</div>
+              <div class="release-info">
+                <h3 class="release-title">Latest from Lloyd Frazier</h3>
+                <p class="release-artist">Lloyd Frazier</p>
+              </div>
+            </div>
+            <div class="release-card">
+              <div class="release-artwork">🎤</div>
+              <div class="release-info">
+                <h3 class="release-title">Latest from Kelly Layton</h3>
+                <p class="release-artist">Kelly Layton</p>
+              </div>
+            </div>
+            <div class="release-card">
+              <div class="release-artwork">🌟</div>
+              <div class="release-info">
+                <h3 class="release-title">Epic Dreams Playlist</h3>
+                <p class="release-artist">Various Artists</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lloyd-frazier" class="section alt">
+        <div class="container">
+          <div class="artist-profile">
+            <div class="artist-header">
+              <h2 class="artist-name">Lloyd Frazier</h2>
+              <div class="artist-badges">
+                <span class="media-badge">CEO & Founder</span>
+                <span class="media-badge">Singer-Songwriter</span>
+                <span class="media-badge">Multi-Instrumentalist</span>
+                <span class="media-badge">Producer</span>
+              </div>
+            </div>
+            <div class="artist-content">
+              <div class="artist-bio">
+                <h3>About Lloyd Frazier</h3>
+                <p>Lloyd Frazier brings a unique blend of entrepreneurial vision and artistic creativity to Epic Dreams Records. As both the CEO of Epic Dreams Entertainment and a recording artist, Lloyd creates music that reflects deep storytelling, innovative soundscapes, and emotional authenticity.</p>
+                <p>His musical journey spans multiple genres, incorporating elements that push boundaries while maintaining a connection to timeless songwriting traditions. Each release showcases his evolution as an artist and his commitment to creating meaningful musical experiences.</p>
+                <div class="streaming-links">
+                  <a href="https://open.spotify.com/artist/2KXWFz3CD7BXxrPfTk0xTw?si=nNNnZ4hVQPCR8vXGY0P0RA" target="_blank" class="streaming-button spotify">Listen on Spotify</a>
+                </div>
+              </div>
+              <div class="spotify-embed">
+                <h3>Lloyd Frazier's Catalog</h3>
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0rvqN39oMPGSwSDBmpVNpQ?utm_source=generator" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="kelly-layton" class="section">
+        <div class="container">
+          <div class="artist-profile">
+            <div class="artist-header">
+              <h2 class="artist-name">Kelly Layton</h2>
+              <div class="artist-badges">
+                <span class="media-badge">Recording Artist</span>
+                <span class="media-badge">Vocalist</span>
+                <span class="media-badge">Performer</span>
+                <span class="media-badge">Songwriter</span>
+              </div>
+            </div>
+            <div class="artist-content">
+              <div class="artist-bio">
+                <h3>About Kelly Layton</h3>
+                <p>Kelly Layton's distinctive voice and artistic vision make her a standout talent on the Epic Dreams Records roster. Her music captures authentic emotions and delivers powerful performances that resonate with audiences worldwide.</p>
+                <p>With a vocal style that combines power and vulnerability, Kelly creates songs that speak to the human experience. Her dedication to her craft and unique perspective bring fresh energy to every project, establishing her as a vital voice in contemporary music.</p>
+                <div class="streaming-links">
+                  <a href="https://open.spotify.com/artist/5ioYBEItbcorbNdifaLhxb?si=_u1Cttt0SJWQPw0FRnqHYA" target="_blank" class="streaming-button spotify">Listen on Spotify</a>
+                </div>
+              </div>
+              <div class="spotify-embed">
+                <h3>Kelly Layton's Music</h3>
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/5ioYBEItbcorbNdifaLhxb?utm_source=generator" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="streaming" class="section alt">
+        <div class="container">
+          <h2>Stream Our Music Everywhere</h2>
+          <div class="distribution-partner">
+            <p class="partner-info">
+              <strong>Global Distribution:</strong> All Epic Dreams Records releases are distributed worldwide through 
+              <span class="distro-highlight">Distro Kids</span>, ensuring our music reaches listeners on all major streaming platforms.
+            </p>
+          </div>
+          <div class="partners-grid" style="margin-top: 2rem;">
+            <div class="partner-card">
+              <h3>Spotify</h3>
+              <p>Stream our complete catalog</p>
+            </div>
+            <div class="partner-card">
+              <h3>Apple Music</h3>
+              <p>Available on all Apple devices</p>
+            </div>
+            <div class="partner-card">
+              <h3>YouTube Music</h3>
+              <p>Watch and listen</p>
+            </div>
+            <div class="partner-card">
+              <h3>Amazon Music</h3>
+              <p>Stream with Prime</p>
+            </div>
+            <div class="partner-card">
+              <h3>Tidal</h3>
+              <p>High-fidelity streaming</p>
+            </div>
+            <div class="partner-card">
+              <h3>Deezer</h3>
+              <p>Global music streaming</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container">
+          <h2>Connect with Epic Dreams Records</h2>
+          <div class="grid-2" style="margin: 2rem 0;">
+            <div>
+              <h3>For Artists & Collaborations</h3>
+              <p>Interested in joining Epic Dreams Records or collaborating with our artists?</p>
+              <div class="cta">
+                <a class="button button-primary" href="mailto:lloyd@epicdreamsassetmanagement.com?subject=Epic%20Dreams%20Records%20Artist%20Inquiry">Contact A&R</a>
+              </div>
+            </div>
+            <div>
+              <h3>For Licensing & Sync</h3>
+              <p>Looking to license our music for film, TV, or commercial use?</p>
+              <div class="cta">
+                <a class="button button-primary" href="mailto:kiesha@epicdreamsassetmanagement.com?subject=Music%20Licensing%20Inquiry">Licensing Inquiries</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="music-year"></span> Epic Dreams Records, a division of Epic Dreams Entertainment LLC.</p>
+        <p class="small">Part of Epic Dreams Asset Management and Holding Company, Incorporated</p>
+        <p class="small">Music distributed worldwide through Distro Kids.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('music-year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
