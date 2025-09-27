@@ -12,6 +12,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://epicdreamsassetmanagement.com/ai/taxbot-pro.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://epicdreamsassetmanagement.com/ai-competitive-analysis.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
