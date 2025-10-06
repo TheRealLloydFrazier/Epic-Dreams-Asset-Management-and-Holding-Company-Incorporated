@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  background-color: #030303;
+}
+
+body {
+  @apply bg-black text-foreground font-sans antialiased;
+}
+
+a {
+  @apply text-accent-teal hover:text-accent-violet transition-colors;
+}
+
+::selection {
+  @apply bg-accent-violet text-black;
+}

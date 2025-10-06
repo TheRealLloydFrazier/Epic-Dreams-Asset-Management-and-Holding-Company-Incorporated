@@ -1,0 +1,34 @@
+node - <<'NODE'
+const fs=require('fs');
+const files=[
+  'src/app/page.tsx',
+  'src/components/store/StoreGrid.tsx',
+  'src/app/product/[slug]/page.tsx',
+  'src/components/store/RelatedProducts.tsx',
+  'src/components/store/CartClient.tsx',
+  'src/app/releases/[slug]/page.tsx',
+  'src/app/releases/page.tsx',
+  'src/app/artist/page.tsx',
+  'src/app/artist/[slug]/page.tsx'
+];
+for(const file of files){
+  let content=fs.readFileSync(file,'utf8');
+  content=content.replace(/\/images\/placeholder-product\.jpg/g,'/images/placeholder-product.svg');
+  content=content.replace(/\/images\/placeholder-release\.jpg/g,'/images/placeholder-release.svg');
+  content=content.replace(/\/images\/placeholder-artist\.jpg/g,'/images/placeholder-artist.svg');
+  fs.writeFileSync(file,content);
+}
+NODE
+cat <<'EOF' > public/images/placeholder-product.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#121212" />
+      <stop offset="100%" stop-color="#6a4bff" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#grad)" />
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#f5f5f5" font-family="'Space Grotesk', sans-serif" font-size="48">
+    Epic Dreams Merch
+  </text>
+</svg>
