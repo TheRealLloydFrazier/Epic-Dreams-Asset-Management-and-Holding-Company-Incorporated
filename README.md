@@ -31,6 +31,7 @@ Required keys:
 
 - `DATABASE_URL` – PostgreSQL connection string
 - `NEXT_PUBLIC_APP_URL` – Base URL for the deployed app
+- `STRIPE_PUBLISHABLE_KEY` – Stripe publishable key (client-side)
 - `STRIPE_SECRET_KEY` – Stripe API secret
 - `STRIPE_WEBHOOK_SECRET` – Signing secret from Stripe webhook endpoint
 - `ADMIN_SESSION_SECRET` – Long random string for admin sessions
@@ -58,7 +59,7 @@ Seed demo data (products, signed variants, admin user, etc.):
 npm run db:seed
 ```
 
-Demo admin credentials: `admin@epicdreamsent.com` / `ChangeMe123!` (will require a password change flow in production).
+Demo admin credentials: admin@epicdreamsent.com / ChangeMe123! (will require a password change flow in production).
 
 ### Development Server
 
