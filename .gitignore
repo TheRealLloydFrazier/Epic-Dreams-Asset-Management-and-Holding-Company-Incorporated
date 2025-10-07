@@ -1,0 +1,18 @@
+node_modules
+.next
+.env
+.env.local
+.env.production
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+.DS_Store
+out
+coverage
+artifacts
+prisma/dev.db
+
+# Generated assets
+public/storage
+
