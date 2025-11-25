@@ -12,14 +12,12 @@
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
-    "postbuild": "next-sitemap" 
+    "postbuild": "next-sitemap"
   },
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
   },
-  "dependencies": {
-
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@prisma/client": "^5.15.0",
