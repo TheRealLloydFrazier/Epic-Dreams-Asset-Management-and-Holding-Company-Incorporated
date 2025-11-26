@@ -20,6 +20,7 @@ export default async function AdminOrdersPage() {
     <div className="mx-auto max-w-6xl px-4 py-16">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-semibold text-white">Orders</h1>
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a
           href="/api/admin/orders"
           className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white/70 hover:border-accent-teal hover:text-white"
