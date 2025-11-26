@@ -7,6 +7,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
   apiVersion: '2023-10-16'
 });
 
+// Type guard for Stripe ID values stored in Prisma JsonValue fields
+type StripeIdValue = { id: string };
+
+function isStripeIdValue(value: unknown): value is StripeIdValue {
+  return typeof value === 'object' && value !== null && 'id' in value && typeof (value as any).id === 'string';
+}
+
 const CheckoutSchema = z.object({
   items: z.array(
     z.object({
@@ -82,7 +89,9 @@ export async function POST(request: Request) {
 async function getOrCreateShippingRate(key: string, name: string, amount: number) {
   const metadataKey = `shipping:${key}`;
   const setting = await prisma.setting.findUnique({ where: { key: metadataKey } });
-  if (setting?.value?.id) return setting.value.id as string;
+  if (setting?.value && isStripeIdValue(setting.value)) {
+    return setting.value.id;
+  }
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2023-10-16' });
   const rate = await stripe.shippingRates.create({
     display_name: name,
@@ -102,7 +111,9 @@ async function getOrCreateCoupon(code: string) {
   if (!discount) return undefined;
   const metadataKey = `coupon:${code}`;
   const cached = await prisma.setting.findUnique({ where: { key: metadataKey } });
-  if (cached?.value?.id) return cached.value.id as string;
+  if (cached?.value && isStripeIdValue(cached.value)) {
+    return cached.value.id;
+  }
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2023-10-16' });
   const coupon = await stripe.coupons.create({
     name: code,
