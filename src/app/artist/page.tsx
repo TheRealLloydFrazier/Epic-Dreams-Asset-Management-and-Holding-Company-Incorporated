@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { prisma } from '@lib/db/prisma';
 import { displayClass } from '@lib/utils/fonts';
 
-export const revalidate = 120;
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function ArtistsPage() {
   const artists = await prisma.artist.findMany({

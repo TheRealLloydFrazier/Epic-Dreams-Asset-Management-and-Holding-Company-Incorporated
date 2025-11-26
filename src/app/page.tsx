@@ -5,7 +5,8 @@ import Image from 'next/image';
 import { EmailCapture } from '@components/store/EmailCapture';
 import { displayClass } from '@lib/utils/fonts';
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function HomePage() {
   const [featuredProducts, latestRelease, posts] = await Promise.all([
