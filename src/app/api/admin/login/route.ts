@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs';
 import { prisma } from '@lib/db/prisma';
 import { getAdminSession } from '@lib/auth/session';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   const { email, password } = await request.json();
   if (!email || !password) {

@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@lib/db/prisma';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   const payload = await request.json();
   await prisma.setting.upsert({

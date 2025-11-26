@@ -3,7 +3,7 @@ import { StoreFilters } from '@components/store/StoreFilters';
 import { StoreGrid } from '@components/store/StoreGrid';
 import { displayClass } from '@lib/utils/fonts';
 
-export const revalidate = 30;
+export const dynamic = 'force-dynamic';
 
 export default function StorePage({ searchParams }: { searchParams: Record<string, string | string[] | undefined> }) {
   return (
