@@ -152,10 +152,30 @@ To use `epicdreamsassetmanagement.com`:
 "postinstall": "prisma generate"
 ```
 
-### Database connection fails
-- Check `DATABASE_URL` is set correctly
+### Database connection fails with P1001 error
+**Error**: `Error: P1001: Can't reach database server`
+
+This is often caused by an incorrect `DATABASE_URL`. Common issues:
+
+1. **Typo in database endpoint** - Double-check the connection string, especially the host portion
+2. **Wrong pooler endpoint** - For Neon databases, ensure you're using the correct pooler endpoint (e.g., `ep-xxx-pooler`, not a typo like `ep-xxx-poller`)
+3. **Firewall restrictions** - Ensure database allows connections from Vercel IPs
+4. **Incorrect credentials** - Verify username and password are correct
+
+**To diagnose:**
+```bash
+# Pull environment variables and test connection locally
+vercel env pull .env.local
+npm run db:verify
+```
+
+If you see a specific endpoint mismatch error, refer to [`DATABASE_FIX.md`](./DATABASE_FIX.md) for detailed instructions.
+
+### Database connection fails (general)
+- Check `DATABASE_URL` is set correctly in Vercel environment variables
 - Ensure database allows connections from Vercel IPs
 - For Vercel Postgres, make sure you created it in the same project
+- Run `npm run db:verify` locally to test the connection string
 
 ### Stripe webhook not working
 - Verify webhook URL is correct
