@@ -3,6 +3,8 @@ import { prisma } from '@lib/db/prisma';
 import { getAdminSession } from '@lib/auth/session';
 import { z } from 'zod';
 
+export const dynamic = 'force-dynamic';
+
 const UpdateSchema = z.object({
   status: z.string().optional(),
   trackingNumber: z.string().optional()

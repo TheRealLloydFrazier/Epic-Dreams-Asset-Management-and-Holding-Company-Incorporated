@@ -3,6 +3,8 @@ import { prisma } from '@lib/db/prisma';
 import { getAdminSession } from '@lib/auth/session';
 import { z } from 'zod';
 
+export const dynamic = 'force-dynamic';
+
 const VariantSchema = z.object({
   name: z.string(),
   sku: z.string(),

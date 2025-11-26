@@ -5,6 +5,8 @@ import { AddToCartForm } from '@components/store/AddToCartForm';
 import { RelatedProducts } from '@components/store/RelatedProducts';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const product = await prisma.product.findUnique({
     where: { slug: params.slug },

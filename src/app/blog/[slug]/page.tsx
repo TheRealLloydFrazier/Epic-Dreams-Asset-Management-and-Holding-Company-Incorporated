@@ -4,6 +4,8 @@ import { displayClass } from '@lib/utils/fonts';
 import type { Metadata } from 'next';
 import { marked } from 'marked';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await prisma.post.findUnique({ where: { slug: params.slug } });
   if (!post) return {};
