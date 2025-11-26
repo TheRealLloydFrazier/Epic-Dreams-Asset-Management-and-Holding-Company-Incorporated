@@ -53,6 +53,12 @@ npx prisma generate
 npx prisma migrate dev --name init
 ```
 
+Verify your database connection (optional but recommended):
+
+```bash
+npm run db:verify
+```
+
 Seed demo data (products, signed variants, admin user, etc.):
 
 ```bash
@@ -109,6 +115,7 @@ Use 4242 4242 4242 4242 with any future expiry and any CVC. Additional test card
 - `npm run build` – Build for production
 - `npm run start` – Start production server
 - `npm run db:seed` – Seed demo data
+- `npm run db:verify` – Verify database connection
 - `npm run prisma:migrate` – Run migrations on the database
 - `npm run prisma:studio` – Open Prisma Studio
 
