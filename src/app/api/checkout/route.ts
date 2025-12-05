@@ -43,10 +43,20 @@ export async function POST(request: Request) {
   });
 
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
+  const outOfStockItems: string[] = [];
 
   for (const cartItem of parsed.data.items) {
     const variant = items.find((item) => item.id === cartItem.variantId);
     if (!variant) continue;
+
+    // Check inventory availability
+    if (variant.inventory < cartItem.quantity) {
+      outOfStockItems.push(
+        `${variant.product.title} — ${variant.name} (requested: ${cartItem.quantity}, available: ${variant.inventory})`
+      );
+      continue;
+    }
+
     lineItems.push({
       quantity: cartItem.quantity,
       price_data: {
@@ -60,6 +70,13 @@ export async function POST(request: Request) {
         }
       }
     });
+  }
+
+  if (outOfStockItems.length > 0) {
+    return NextResponse.json(
+      { error: 'Some items are out of stock', outOfStockItems },
+      { status: 400 }
+    );
   }
 
   if (lineItems.length === 0) {

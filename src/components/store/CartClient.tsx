@@ -17,7 +17,15 @@ export function CartClient({
 }) {
   const { items, subtotalCents, updateItem, removeItem, clear, discountCode: storedDiscount, setDiscount } = useCart();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [discountCode, setDiscountCode] = useState(initialDiscount || storedDiscount || '');
+
+  // Clear cart on successful checkout
+  useEffect(() => {
+    if (success) {
+      clear();
+    }
+  }, [success, clear]);
 
   useEffect(() => {
     if (initialDiscount && initialDiscount !== discountCode) {
@@ -37,6 +45,7 @@ export function CartClient({
 
   const checkout = async () => {
     setLoading(true);
+    setError(null);
     try {
       const response = await fetch('/api/checkout', {
         method: 'POST',
@@ -47,9 +56,19 @@ export function CartClient({
         })
       });
       const data = await response.json();
+      if (!response.ok) {
+        if (data.outOfStockItems) {
+          setError(`Out of stock: ${data.outOfStockItems.join(', ')}`);
+        } else {
+          setError(data.error || 'Checkout failed. Please try again.');
+        }
+        return;
+      }
       if (data.url) {
         window.location.href = data.url;
       }
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -65,6 +84,11 @@ export function CartClient({
       {cancel && (
         <div className="rounded-3xl border border-red-400/60 bg-red-500/10 p-4 text-sm text-red-300">
           Checkout canceled. Your cart is ready when you are.
+        </div>
+      )}
+      {error && (
+        <div className="rounded-3xl border border-red-400/60 bg-red-500/10 p-4 text-sm text-red-300">
+          {error}
         </div>
       )}
       <div className="flex items-center justify-between">
