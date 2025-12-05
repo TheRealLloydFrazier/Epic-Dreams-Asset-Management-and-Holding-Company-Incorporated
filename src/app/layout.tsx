@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import './globals.css';
 import { Footer } from '@components/layout/Footer';
 import { Header } from '@components/layout/Header';
+import { Analytics } from '@components/layout/Analytics';
 import { fontSans, fontDisplay } from '@lib/utils/fonts';
 import { Providers } from '@components/layout/Providers';
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${fontSans.variable} ${fontDisplay.variable}`} suppressHydrationWarning>
       <body className="bg-black text-foreground min-h-screen">
+        <Analytics />
         <Providers>
           <Header />
           <main className="min-h-screen">{children}</main>
