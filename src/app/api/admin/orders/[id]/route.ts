@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@lib/db/prisma';
 import { getAdminSession } from '@lib/auth/session';
+import { sendShippingNotification } from '@lib/email/mailer';
 import { z } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -25,6 +26,11 @@ export async function PATCH(
     return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
   }
 
+  // Get current order to check if tracking number is being added
+  const currentOrder = await prisma.order.findUnique({
+    where: { id: Number(params.id) }
+  });
+
   const order = await prisma.order.update({
     where: { id: Number(params.id) },
     data: {
@@ -32,6 +38,18 @@ export async function PATCH(
       trackingNumber: parsed.data.trackingNumber
     }
   });
+
+  // Send shipping notification if tracking number was just added
+  if (
+    parsed.data.trackingNumber &&
+    currentOrder &&
+    !currentOrder.trackingNumber &&
+    order.email
+  ) {
+    sendShippingNotification(order.email, order.id, parsed.data.trackingNumber).catch((err) =>
+      console.error('Failed to send shipping notification:', err)
+    );
+  }
 
   return NextResponse.json({ success: true, order });
 }

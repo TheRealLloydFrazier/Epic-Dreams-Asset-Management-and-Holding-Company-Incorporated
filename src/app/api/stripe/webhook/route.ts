@@ -1,6 +1,7 @@
 import Stripe from 'stripe';
 import { prisma } from '@lib/db/prisma';
 import { NextResponse } from 'next/server';
+import { sendOrderConfirmation } from '@lib/email/mailer';
 
 export const dynamic = 'force-dynamic';
 
@@ -87,6 +88,19 @@ export async function POST(request: Request) {
       });
 
       console.log('Order created', order.id);
+
+      // Send order confirmation email (non-blocking)
+      sendOrderConfirmation({
+        orderId: order.id,
+        email: session.customer_details!.email!,
+        totalCents: session.amount_total || 0,
+        items: lineItems.data.map((item) => ({
+          title: item.description || 'Item',
+          quantity: item.quantity || 1,
+          priceCents: item.amount_total || 0
+        })),
+        shippingAddress: session.shipping_details as any
+      }).catch((err) => console.error('Failed to send order confirmation:', err));
     } catch (error) {
       console.error('Error creating order:', error);
       return new NextResponse('Error processing order', { status: 500 });
