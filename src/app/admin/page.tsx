@@ -11,6 +11,10 @@ export default async function AdminPage() {
     return <AdminShell.Unauthenticated />;
   }
 
+  if (session.mustChangePassword) {
+    return <AdminShell.ChangePassword />;
+  }
+
   const [products, orders] = await Promise.all([
     prisma.product.count(),
     prisma.order.count()

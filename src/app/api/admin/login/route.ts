@@ -23,6 +23,7 @@ export async function POST(request: Request) {
 
   const session = await getAdminSession();
   session.adminId = admin.id;
+  session.mustChangePassword = admin.mustChangePassword;
   await session.save();
 
   return NextResponse.json({ success: true, mustChangePassword: admin.mustChangePassword });

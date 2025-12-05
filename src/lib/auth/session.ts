@@ -12,6 +12,7 @@ export const sessionOptions: SessionOptions = {
 
 export type AdminSession = {
   adminId?: number;
+  mustChangePassword?: boolean;
 };
 
 export async function getAdminSession(): Promise<IronSession<AdminSession>> {

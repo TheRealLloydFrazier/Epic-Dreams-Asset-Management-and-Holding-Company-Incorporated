@@ -1,7 +1,21 @@
 import Link from 'next/link';
 import { LoginForm } from '@components/admin/LoginForm';
+import { ChangePasswordForm } from '@components/admin/ChangePasswordForm';
 
 export const AdminShell = {
+  ChangePassword: function ChangePassword() {
+    return (
+      <div className="mx-auto flex min-h-[60vh] max-w-md flex-col justify-center px-4 py-20">
+        <h1 className="text-2xl font-semibold text-white">Change Password Required</h1>
+        <p className="mt-2 text-sm text-white/60">
+          For security, you must change your password before accessing the admin console.
+        </p>
+        <div className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-6">
+          <ChangePasswordForm />
+        </div>
+      </div>
+    );
+  },
   Unauthenticated: function Unauthenticated() {
     return (
       <div className="mx-auto flex min-h-[60vh] max-w-md flex-col justify-center px-4 py-20">

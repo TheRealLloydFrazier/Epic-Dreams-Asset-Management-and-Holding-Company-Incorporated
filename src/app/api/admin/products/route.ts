@@ -25,7 +25,7 @@ const ProductSchema = z.object({
 
 export async function POST(request: Request) {
   const session = await getAdminSession();
-  if (!session.adminId) {
+  if (!session.adminId || session.mustChangePassword) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

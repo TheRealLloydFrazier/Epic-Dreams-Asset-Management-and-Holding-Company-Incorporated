@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const session = await getAdminSession();
-  if (!session.adminId) {
+  if (!session.adminId || session.mustChangePassword) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

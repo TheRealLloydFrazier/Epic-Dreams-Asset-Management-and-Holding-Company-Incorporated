@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 
 export default async function NewProductPage() {
   const session = await getAdminSession();
-  if (!session.adminId) {
+  if (!session.adminId || session.mustChangePassword) {
     redirect('/admin');
   }
 

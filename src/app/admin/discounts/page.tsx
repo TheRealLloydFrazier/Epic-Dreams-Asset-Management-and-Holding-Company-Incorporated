@@ -16,7 +16,7 @@ type DiscountRecord = {
 
 export default async function AdminDiscountsPage() {
   const session = await getAdminSession();
-  if (!session.adminId) {
+  if (!session.adminId || session.mustChangePassword) {
     redirect('/admin');
   }
 

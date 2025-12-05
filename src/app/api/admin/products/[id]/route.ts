@@ -9,7 +9,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   const session = await getAdminSession();
-  if (!session.adminId) {
+  if (!session.adminId || session.mustChangePassword) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

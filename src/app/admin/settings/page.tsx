@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function AdminSettingsPage() {
   const session = await getAdminSession();
-  if (!session.adminId) {
+  if (!session.adminId || session.mustChangePassword) {
     redirect('/admin');
   }
 
