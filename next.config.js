@@ -1,15 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    // ⚠️ Allows production builds to complete even with type errors
-    // Remove this once types are properly aligned
+    // TODO: Set to false once all TypeScript errors are resolved
+    // Run `npx tsc --noEmit` to see current errors
     ignoreBuildErrors: true,
   },
   eslint: {
-    // Also ignore ESLint during builds for now
+    // TODO: Set to false once ESLint errors are resolved
+    // Run `npm run lint` to see current warnings
     ignoreDuringBuilds: true,
   },
-  optimizeFonts: false, // Disable font optimization to prevent network fetch errors
   // Skip static generation for API routes during build
   // This allows development to continue without Prisma/database connectivity
   output: 'standalone',
