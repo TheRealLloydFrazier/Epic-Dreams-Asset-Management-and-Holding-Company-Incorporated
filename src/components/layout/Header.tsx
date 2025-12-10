@@ -12,7 +12,8 @@ const navItems = [
   { href: '/store', label: 'Store' },
   { href: '/artist', label: 'Artists' },
   { href: '/releases', label: 'Releases' },
-  { href: '/blog', label: 'Blog' }
+  { href: '/blog', label: 'Blog' },
+  { href: '/company', label: 'Company' }
 ];
 
 export function Header() {
