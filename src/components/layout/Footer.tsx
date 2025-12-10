@@ -8,6 +8,7 @@ const policyLinks = [
 ];
 
 const socialLinks = [
+  { href: 'https://epicdreamsentertainment.com', label: 'Website' },
   { href: 'https://instagram.com/epicdreamsent', label: 'Instagram' },
   { href: 'https://youtube.com/@epicdreamsent', label: 'YouTube' },
   { href: 'https://tiktok.com/@epicdreamsent', label: 'TikTok' }
