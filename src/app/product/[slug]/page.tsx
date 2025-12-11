@@ -43,7 +43,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
     variants: productFromDb.variants.map((v) => ({
       ...v,
       attributes: jsonToRecord(v.attributes)
-    }))
+    })),
+    collections: productFromDb.collections.map((pc) => pc.collection)
   };
 
   const related = await prisma.product.findMany({
