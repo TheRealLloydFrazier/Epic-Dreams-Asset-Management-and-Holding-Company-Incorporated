@@ -38,14 +38,17 @@ export default async function ProductPage({ params }: { params: { slug: string }
   });
   if (!productFromDb) return notFound();
 
+  const { collections: dbCollections, ...dbProductRest } = productFromDb;
+
   const product: StoreProduct = {
-    ...productFromDb,
-    variants: productFromDb.variants.map((v) => ({
+    ...dbProductRest,
+    variants: dbProductRest.variants.map((v) => ({
       ...v,
       attributes: jsonToRecord(v.attributes)
-    })),
-    collections: productFromDb.collections.map((pc) => pc.collection)
+    }))
   };
+
+  const collections = dbCollections?.map((pc) => pc.collection);
 
   const related = await prisma.product.findMany({
     where: {
