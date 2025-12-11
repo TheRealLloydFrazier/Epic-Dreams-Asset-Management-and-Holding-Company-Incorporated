@@ -4,6 +4,15 @@ import { prisma } from '@lib/db/prisma';
 import { AddToCartForm } from '@components/store/AddToCartForm';
 import { RelatedProducts } from '@components/store/RelatedProducts';
 import type { Metadata } from 'next';
+import type { StoreProduct } from '@lib/types/store';
+import { Prisma } from '@prisma/client';
+
+function jsonToRecord(value: Prisma.JsonValue | null | undefined): Record<string, unknown> {
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    return value as Record<string, unknown>;
+  }
+  return {};
+}
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const product = await prisma.product.findUnique({
@@ -23,11 +32,19 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
-  const product = await prisma.product.findUnique({
+  const productFromDb = await prisma.product.findUnique({
     where: { slug: params.slug },
     include: { images: true, variants: true, collections: { include: { collection: true } } }
   });
-  if (!product) return notFound();
+  if (!productFromDb) return notFound();
+
+  const product: StoreProduct = {
+    ...productFromDb,
+    variants: productFromDb.variants.map((v) => ({
+      ...v,
+      attributes: jsonToRecord(v.attributes)
+    }))
+  };
 
   const related = await prisma.product.findMany({
     where: {
@@ -35,7 +52,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
       collections: {
         some: {
           collectionId: {
-            in: product.collections.map((c) => c.collectionId)
+            in: productFromDb.collections.map((c) => c.collectionId)
           }
         }
       }
