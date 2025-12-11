@@ -82,7 +82,8 @@ export async function POST(request: Request) {
 async function getOrCreateShippingRate(key: string, name: string, amount: number) {
   const metadataKey = `shipping:${key}`;
   const setting = await prisma.setting.findUnique({ where: { key: metadataKey } });
-  if (setting?.value?.id) return setting.value.id as string;
+  const storedRate = setting?.value as { id?: string } | null;
+  if (storedRate?.id) return storedRate.id;
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2023-10-16' });
   const rate = await stripe.shippingRates.create({
     display_name: name,
@@ -102,7 +103,8 @@ async function getOrCreateCoupon(code: string) {
   if (!discount) return undefined;
   const metadataKey = `coupon:${code}`;
   const cached = await prisma.setting.findUnique({ where: { key: metadataKey } });
-  if (cached?.value?.id) return cached.value.id as string;
+  const storedCoupon = cached?.value as { id?: string } | null;
+  if (storedCoupon?.id) return storedCoupon.id;
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2023-10-16' });
   const coupon = await stripe.coupons.create({
     name: code,
