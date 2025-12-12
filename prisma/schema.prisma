@@ -191,3 +191,41 @@ model ProductArtist {
 
   @@id([productId, artistId])
 }
+
+// Epic Dreams Organization Structure
+enum CompanyType {
+  holding
+  subsidiary
+}
+
+enum CompanyStatus {
+  active
+  inactive
+  planned
+}
+
+model Company {
+  id            Int           @id @default(autoincrement())
+  name          String
+  legalName     String        @map("legal_name")
+  slug          String        @unique
+  type          CompanyType
+  status        CompanyStatus @default(active)
+  description   String?
+  mission       String?
+  vision        String?
+  logoUrl       String?       @map("logo_url")
+  website       String?
+  email         String?
+  phone         String?
+  address       Json?
+  socials       Json?
+  foundedDate   DateTime?     @map("founded_date")
+  parentId      Int?          @map("parent_id")
+  parent        Company?      @relation("CompanyHierarchy", fields: [parentId], references: [id])
+  subsidiaries  Company[]     @relation("CompanyHierarchy")
+  sortOrder     Int           @default(0) @map("sort_order")
+  metadata      Json?
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+}
