@@ -82,7 +82,7 @@ export async function POST(request: Request) {
 async function getOrCreateShippingRate(key: string, name: string, amount: number) {
   const metadataKey = `shipping:${key}`;
   const setting = await prisma.setting.findUnique({ where: { key: metadataKey } });
-  if (setting?.value?.id) return setting.value.id as string;
+  if (setting?.value && typeof setting.value === 'object' && 'id' in setting.value) return (setting.value as { id: string }).id;
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2023-10-16' });
   const rate = await stripe.shippingRates.create({
     display_name: name,
