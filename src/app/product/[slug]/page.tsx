@@ -5,6 +5,38 @@ import { AddToCartForm } from '@components/store/AddToCartForm';
 import { RelatedProducts } from '@components/store/RelatedProducts';
 import type { Metadata } from 'next';
 
+// Type definitions
+type StoreProductVariant = {
+  id: number;
+  productId: number;
+  name: string;
+  sku: string;
+  priceCents: number;
+  compareAtCents: number;
+  signed: boolean;
+  inventory: number;
+  attributes: Record<string, unknown>;
+};
+
+type StoreProduct = {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  priceCents: number;
+  compareAtCents: number;
+  images: { id: number; productId: number; url: string; alt: string; position: number; }[];
+  variants: StoreProductVariant[];
+};
+
+// Helper function to convert JsonValue to Record<string, unknown>
+function jsonToRecord(json: any): Record<string, unknown> {
+  if (json && typeof json === 'object' && !Array.isArray(json)) {
+    return json as Record<string, unknown>;
+  }
+  return {};
+}
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const product = await prisma.product.findUnique({
     where: { slug: params.slug },
@@ -29,7 +61,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
   });
   if (!product) return notFound();
 
-  const related = await prisma.product.findMany({
+  const relatedFromDb = await prisma.product.findMany({
     where: {
       id: { not: product.id },
       collections: {
@@ -43,6 +75,14 @@ export default async function ProductPage({ params }: { params: { slug: string }
     include: { images: true, variants: true },
     take: 4
   });
+
+    const related: StoreProduct[] = relatedFromDb.map((p) => ({
+    ...p,
+    variants: p.variants.map((v) => ({
+      ...v,
+      attributes: jsonToRecord(v.attributes)
+    }))
+  }));
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16">
