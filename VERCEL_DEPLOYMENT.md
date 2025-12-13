@@ -144,6 +144,16 @@ To use `epicdreamsassetmanagement.com`:
    - Email: `admin@epicdreamsent.com`
    - Password: `ChangeMe123!`
 
+### Quick checklist for the Neon/Prisma setup
+
+If you want to “push it through” quickly after configuring the Neon driver adapter:
+
+1) **Set the Neon URLs in Vercel** — add the exact `DATABASE_URL` (pooler host) and `DIRECT_URL` (primary host) values from the runbook to both Production and Preview environments, without trailing spaces.
+2) **Regenerate Prisma Client** — run `npx prisma generate` locally (or ensure `postinstall` does it) so the Neon adapter wiring is included in the build output.
+3) **Deploy** — commit and push your branch; Vercel will pick up the latest Prisma client during the build.
+4) **Verify health** — after the deployment finishes, hit `/api/health/db` on your deployment. A JSON response of `{ "ok": true }` confirms the Neon connection is working end-to-end.
+5) **Apply schema** — once the health check passes, run `npx prisma migrate deploy` (if migrations exist) or `npx prisma db push` against the same environment, followed by any seeding you need.
+
 ## Troubleshooting
 
 ### Build fails with "Prisma Client not generated"
