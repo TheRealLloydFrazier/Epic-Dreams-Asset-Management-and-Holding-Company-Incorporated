@@ -1,53 +1,33 @@
+import 'server-only';
+
 import { PrismaClient } from '@prisma/client';
+import { PrismaNeon } from '@prisma/adapter-neon';
+import { neonConfig } from '@neondatabase/serverless';
+import ws from 'ws';
+
+if (!process.env.DATABASE_URL) {
+  throw new Error('DATABASE_URL is not set');
+}
+
+// Ensure secure, TLS-backed WebSocket connections in serverless environments
+neonConfig.webSocketConstructor = ws;
+neonConfig.useSecureWebSocket = true;
+neonConfig.pipelineTLS = true;
+neonConfig.pipelineConnect = 0;
 
 declare global {
   // eslint-disable-next-line no-var
   var prisma: PrismaClient | undefined;
 }
 
-// Create a stub Prisma client for build-time when the real client isn't available
-function createStubPrismaClient(): any {
-  const stubMethod = (..._args: any[]) => {
-    return {
-      then: (resolve: any) => resolve([]),  // Return empty array instead of null
-      catch: () => stubMethod(),
-      finally: () => stubMethod(),
-      ...createStubModel()
-    };
-  };
+const adapter = new PrismaNeon({
+  connectionString: process.env.DATABASE_URL,
+});
 
-  const createStubModel = () => {
-    return new Proxy({}, {
-      get(_target, prop) {
-        if (typeof prop === 'string') {
-          return stubMethod;
-        }
-        return undefined;
-      }
-    });
-  };
+const prismaClientSingleton = () =>
+  new PrismaClient({ adapter, log: ['error', 'warn'] });
 
-  return new Proxy({}, {
-    get(_target, prop) {
-      if (prop === '$connect' || prop === '$disconnect') {
-        return () => Promise.resolve();
-      }
-      return createStubModel();
-    }
-  });
-}
-
-let prismaInstance: PrismaClient;
-
-try {
-  prismaInstance = globalThis.prisma || new PrismaClient();
-} catch (error) {
-  // Prisma client not properly generated, use stub for build
-  console.warn('Prisma client not available, using stub for build');
-  prismaInstance = createStubPrismaClient() as PrismaClient;
-}
-
-export const prisma = prismaInstance;
+export const prisma = globalThis.prisma ?? prismaClientSingleton();
 
 if (process.env.NODE_ENV !== 'production') {
   globalThis.prisma = prisma;
