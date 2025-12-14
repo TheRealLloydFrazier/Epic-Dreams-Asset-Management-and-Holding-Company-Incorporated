@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+        "prebuild": "prisma generate", 
+    
+    "build": "node -v && npm -v && next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
@@ -16,8 +18,8 @@
     "postbuild": "next-sitemap"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+       "node": "24.x",
+    "npm": ">=9.0.0".0"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
