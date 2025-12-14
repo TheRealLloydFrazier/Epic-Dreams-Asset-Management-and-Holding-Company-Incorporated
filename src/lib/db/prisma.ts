@@ -1,34 +1,35 @@
-import 'server-only';
-
-import { PrismaClient } from '@prisma/client';
+import { Pool, neonConfig } from '@neondatabase/serverless';
 import { PrismaNeon } from '@prisma/adapter-neon';
-import { neonConfig } from '@neondatabase/serverless';
+import { PrismaClient } from '@prisma/client';
 import ws from 'ws';
 
-if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL is not set');
-}
-
-// Ensure secure, TLS-backed WebSocket connections in serverless environments
+// Configure Neon to use the WebSocket constructor provided by the `ws` package.
 neonConfig.webSocketConstructor = ws;
-neonConfig.useSecureWebSocket = true;
-neonConfig.pipelineTLS = true;
-neonConfig.pipelineConnect = 0;
 
-declare global {
-  // eslint-disable-next-line no-var
-  var prisma: PrismaClient | undefined;
-}
+// Read the database connection string from the environment.
+const connectionString = process.env.DATABASE_URL;
 
-const adapter = new PrismaNeon({
-  connectionString: process.env.DATABASE_URL,
-});
+/**
+ * Create a new Prisma client with the Neon adapter.  When no `DATABASE_URL` is
+ * provided the fallback creates a standard PrismaClient instance which will
+ * generate SQL queries against a local database.  In production deployments you
+ * should always set `DATABASE_URL` so that Neon can connect via the pooler.
+ */
+const createPrismaClient = (): PrismaClient => {
+  if (!connectionString) {
+    console.warn(
+      '⚠️ DATABASE_URL missing. Falling back to default PrismaClient. Builds may fail if DB access is needed.'
+    );
+    return new PrismaClient();
+  }
+  // Create a connection pool for Neon; this is required for serverless function scaling.
+  const pool = new Pool({ connectionString });
+  const adapter = new PrismaNeon(pool);
+  return new PrismaClient({ adapter });
+};
 
-const prismaClientSingleton = () =>
-  new PrismaClient({ adapter, log: ['error', 'warn'] });
-
-export const prisma = globalThis.prisma ?? prismaClientSingleton();
-
+// Reuse the Prisma client across hot reloads in development to avoid exhausting database connections.
+export const prisma: PrismaClient = (globalThis as any).prisma ?? createPrismaClient();
 if (process.env.NODE_ENV !== 'production') {
-  globalThis.prisma = prisma;
+  (globalThis as any).prisma = prisma;
 }
