@@ -32,6 +32,7 @@ export async function StoreGrid({
     where.collections = {
       some: {
         collection: {
+ 
           slug: category
         }
       }
@@ -141,3 +142,6 @@ export async function StoreGrid({
     </div>
   );
 }
+
+
+
