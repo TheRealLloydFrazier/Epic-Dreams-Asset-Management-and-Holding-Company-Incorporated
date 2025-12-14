@@ -6,7 +6,7 @@
     "dev": "next dev",
         "prebuild": "prisma generate", 
     
-    "build": "node -v &&& npm -v && next build",
+    "build": "node -v && npm -v && next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
