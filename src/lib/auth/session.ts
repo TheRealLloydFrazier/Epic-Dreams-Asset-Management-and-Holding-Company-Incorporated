@@ -3,7 +3,7 @@ import { getIronSession, type IronSession, type SessionOptions } from 'iron-sess
 
 export const sessionOptions: SessionOptions = {
   cookieName: 'epicdreams_admin',
-  password: process.env.ADMIN_SESSION_SECRET || 'complex_password_change_me',
+  password: process.env.ADMIN_SESSION_SECRET as string,
   ttl: 60 * 60 * 12,
   cookieOptions: {
     secure: process.env.NODE_ENV === 'production'
