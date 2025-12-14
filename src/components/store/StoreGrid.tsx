@@ -67,7 +67,7 @@ export async function StoreGrid({
     };
   }
 
-  const orderBy = (() => {
+  const orderBy: any = (() => {
     switch (sort) {
       case 'price-asc':
         return { variants: { _min: { priceCents: 'asc' } } };
