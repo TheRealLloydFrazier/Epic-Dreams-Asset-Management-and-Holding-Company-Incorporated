@@ -4,8 +4,22 @@ import { prisma } from '@lib/db/prisma';
 import { AddToCartForm } from '@components/store/AddToCartForm';
 import { RelatedProducts } from '@components/store/RelatedProducts';
 import type { Metadata } from 'next';
+import type { StoreProduct } from '@lib/types/store';
 
 export const dynamic = 'force-dynamic';
+
+function convertProduct(p: any): StoreProduct {
+  return {
+    ...p,
+    variants: p.variants.map((v: any) => ({
+      ...v,
+      attributes:
+        typeof v.attributes === 'object' && v.attributes !== null
+          ? (v.attributes as Record<string, unknown>)
+          : {},
+    })),
+  };
+}
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const product = await prisma.product.findUnique({
@@ -46,6 +60,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
     take: 4
   });
 
+  const storeProduct = convertProduct(product);
+  const storeRelated = related.map((p: any) => convertProduct(p));
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-16">
       <div className="grid gap-12 lg:grid-cols-2">
@@ -70,7 +87,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           <p className="text-xs uppercase tracking-[0.4em] text-accent-teal">Epic Dreams Merch</p>
           <h1 className="mt-3 text-3xl font-semibold text-white">{product.title}</h1>
           <p className="mt-3 text-sm text-white/70">{product.description}</p>
-          <AddToCartForm product={product} />
+          <AddToCartForm product={storeProduct} />
           <div className="mt-8 space-y-4 text-sm text-white/70">
             <div>
               <h2 className="text-xs uppercase tracking-[0.3em] text-white/60">Details</h2>
@@ -84,7 +101,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
         </div>
       </div>
       <div className="mt-16">
-        <RelatedProducts products={related} />
+        <RelatedProducts products={storeRelated} />
       </div>
     </div>
   );
