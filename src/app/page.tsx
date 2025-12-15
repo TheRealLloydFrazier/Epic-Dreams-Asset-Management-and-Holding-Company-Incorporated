@@ -23,7 +23,7 @@ export default async function HomePage() {
     prisma.post.findMany({
       orderBy: { publishedAt: 'desc' },
       take: 2
-    })
+    }).catch(() => [])
   ]);
 
   return (
